@@ -1,7 +1,7 @@
 import BookClass from './modules/BookClass.js';
 import saveBook from './modules/saveBook.js';
 import listBooks from './modules/listBooks.js';
-
+import Swal from './node_modules/sweetalert2/src/sweetalert2.js';
 import { DateTime } from './modules/luxon.min.js';
 
 const listSection = document.querySelector('#list');
@@ -18,7 +18,7 @@ listBooks();
 
 const date = document.querySelector('.date');
 date.innerHTML = DateTime.now().toLocaleString(
-  DateTime.DATETIME_MED_WITH_SECONDS
+  DateTime.DATETIME_MED_WITH_SECONDS,
 );
 
 const showAddBook = () => {
@@ -46,15 +46,16 @@ formElement.addEventListener('submit', (event) => {
   const authorElement = document.getElementById('author');
 
   if (
-    titleElement.value.replace(/\s+/g, '').length == 0 ||
-    authorElement.value.replace(/\s+/g, '').length == 0
+    titleElement.value.replace(/\s+/g, '').length === 0
+    || authorElement.value.replace(/\s+/g, '').length === 0
   ) {
-    alert('Please enter valid data to all fields');
+    Swal.fire('Error', 'Please enter valid data to all fields', 'error');
     return false;
   }
   const newBook = new BookClass(titleElement.value, authorElement.value);
   saveBook(newBook);
   showList();
+  return true;
 });
 
 const toggleWindow = () => {
