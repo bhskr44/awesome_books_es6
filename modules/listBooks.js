@@ -15,24 +15,16 @@ const listBooks = () => {
     }
   }
 
-  console.log(books);
   books.forEach((book) => {
-    let newBook = new BookClass(book.title, book.author);
+    const newBook = new BookClass(book.title, book.author);
     newBook.id = book.id;
 
     const divElement = document.createElement('div');
     divElement.classList.add('book');
-    divElement.innerHTML =
-      `
-          <span>"` +
-      newBook.title +
-      `" by ` +
-      newBook.author +
-      `</span>
+    divElement.innerHTML = `
+          <span>"${newBook.title}" by ${newBook.author}</span>
             <form action ="delete-book" class="remove-form" method="get">
-          <input type="hidden" name="removeId" class="removeId" value="` +
-      newBook.id +
-      `"></input>
+          <input type="hidden" name="removeId" class="removeId" value="${newBook.id}"></input>
             <input type="submit" value="Remove"></input>
           </form>
            `;

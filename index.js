@@ -2,18 +2,27 @@ import BookClass from './modules/BookClass.js';
 import saveBook from './modules/saveBook.js';
 import listBooks from './modules/listBooks.js';
 
-let showList = () => {
+import { DateTime } from './modules/luxon.min.js';
+
+const listSection = document.querySelector('#list');
+const formSection = document.querySelector('#form-section');
+const contactSection = document.querySelector('#contact-section');
+const listBtn = document.querySelector('#menu-list');
+const addFormBtn = document.querySelector('#menu-addnew');
+const contactBtn = document.querySelector('#menu-contact');
+
+const showList = () => {
   window.location.reload();
 };
 listBooks();
 
 const date = document.querySelector('.date');
-var DateTime = luxon.DateTime;
+// const { DateTime } = luxon;
 date.innerHTML = DateTime.now().toLocaleString(
   DateTime.DATETIME_MED_WITH_SECONDS
 );
 
-let showAddBook = () => {
+const showAddBook = () => {
   formSection.classList.remove('hide');
   contactSection.classList.add('hide');
   listSection.classList.add('hide');
@@ -22,7 +31,7 @@ let showAddBook = () => {
   contactBtn.classList.remove('active');
 };
 
-let showContact = () => {
+const showContact = () => {
   formSection.classList.add('hide');
   contactSection.classList.remove('hide');
   listSection.classList.add('hide');
@@ -35,20 +44,12 @@ const formElement = document.getElementById('formElement');
 formElement.addEventListener('submit', (event) => {
   event.preventDefault();
 
-  console.log('dfsdfs');
   const titleElement = document.getElementById('title');
   const authorElement = document.getElementById('author');
-  let newBook = new BookClass(titleElement.value, authorElement.value);
+  const newBook = new BookClass(titleElement.value, authorElement.value);
   saveBook(newBook);
   showList();
 });
-
-const listSection = document.querySelector('#list');
-const formSection = document.querySelector('#form-section');
-const contactSection = document.querySelector('#contact-section');
-const listBtn = document.querySelector('#menu-list');
-const addFormBtn = document.querySelector('#menu-addnew');
-const contactBtn = document.querySelector('#menu-contact');
 
 const toggleWindow = () => {
   listBtn.addEventListener('click', () => {

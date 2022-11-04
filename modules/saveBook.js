@@ -1,5 +1,3 @@
-import BookClass from './BookClass.js';
-
 const saveBook = (newBook) => {
   let books = [];
   if (localStorage.getItem('books')) {
