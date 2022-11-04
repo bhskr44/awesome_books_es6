@@ -19,7 +19,7 @@ listBooks();
 const date = document.querySelector('.date');
 // const { DateTime } = luxon;
 date.innerHTML = DateTime.now().toLocaleString(
-  DateTime.DATETIME_MED_WITH_SECONDS
+  DateTime.DATETIME_MED_WITH_SECONDS,
 );
 
 const showAddBook = () => {
