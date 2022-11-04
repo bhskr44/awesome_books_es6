@@ -19,7 +19,7 @@ listBooks();
 const date = document.querySelector('.date');
 // const { DateTime } = luxon;
 date.innerHTML = DateTime.now().toLocaleString(
-  DateTime.DATETIME_MED_WITH_SECONDS,
+  DateTime.DATETIME_MED_WITH_SECONDS
 );
 
 const showAddBook = () => {
@@ -46,6 +46,11 @@ formElement.addEventListener('submit', (event) => {
 
   const titleElement = document.getElementById('title');
   const authorElement = document.getElementById('author');
+
+  if (titleElement.value === '' || authorElement.value === '') {
+    alert('Please fill all fields');
+    return false;
+  }
   const newBook = new BookClass(titleElement.value, authorElement.value);
   saveBook(newBook);
   showList();
