@@ -17,7 +17,6 @@ const showList = () => {
 listBooks();
 
 const date = document.querySelector('.date');
-// const { DateTime } = luxon;
 date.innerHTML = DateTime.now().toLocaleString(
   DateTime.DATETIME_MED_WITH_SECONDS
 );
@@ -39,7 +38,6 @@ const showContact = () => {
   addFormBtn.classList.remove('active');
   contactBtn.classList.add('active');
 };
-// const bookObj = new Books();
 const formElement = document.getElementById('formElement');
 formElement.addEventListener('submit', (event) => {
   event.preventDefault();
