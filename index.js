@@ -47,8 +47,11 @@ formElement.addEventListener('submit', (event) => {
   const titleElement = document.getElementById('title');
   const authorElement = document.getElementById('author');
 
-  if (titleElement.value === '' || authorElement.value === '') {
-    alert('Please fill all fields');
+  if (
+    titleElement.value.replace(/\s+/g, '').length == 0 ||
+    authorElement.value.replace(/\s+/g, '').length == 0
+  ) {
+    alert('Please enter valid data to all fields');
     return false;
   }
   const newBook = new BookClass(titleElement.value, authorElement.value);
